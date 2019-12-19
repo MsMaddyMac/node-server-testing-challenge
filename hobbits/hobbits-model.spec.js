@@ -6,20 +6,14 @@ describe('hobbits model', function() {
     await db('hobbits').truncate();
   });
 
-  describe('insert() & delete()', function() {
+  describe('insert()', function() {
     it('should add new hobbit to the db', async function() {
       await Hobbits.insert({ name: 'Frodo' });
       await Hobbits.insert({ name: 'Meriadoc' });
+      await Hobbits.insert({ name: 'Pip' });
 
       const hobbits = await db('hobbits');
-      expect(hobbits).toHaveLength(2);
-    })
-
-    it('should delete hobbit from the db', async function() {
-      await Hobbits.delete({ id: 1 })
-
-      const hobbits = await db('hobbits');
-      expect(hobbits).toHaveLength(1);
+      expect(hobbits).toHaveLength(3);
     })
   })
 })
