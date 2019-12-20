@@ -41,13 +41,21 @@ describe('DELETE /hobbits/:id', () => {
 		await db('hobbits').truncate();
 	});
 
-	describe('remove()', function() {
-		it('should delete the hobbit from the db', function() {
-			const id = 1;
+	it('should return a 200', async function() {
+		const id = 1;
 
-			return request(server)
-				.delete(`/api/hobbits/${id}`)
-				.expect(200);
-		});
+		return request(server)
+			.delete(`/api/hobbits/${id}`)
+			.expect(200);
+	});
+
+	it('should return a JSON', async function() {
+		const id = 2;
+
+		return request(server)
+			.delete(`/api/hobbits/${id}`)
+			.then(res => {
+				expect(res.type).toMatch(/json/i);
+			});
 	});
 });
