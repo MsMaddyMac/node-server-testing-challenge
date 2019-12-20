@@ -3,35 +3,35 @@ const request = require('supertest');
 const server = require('./server');
 
 describe('server.js', function() {
-  describe('environment', function() {
-    it('should set environment to testing', function() {
-      expect(process.env.DB_ENV).toBe('testing');
-    })
-  })
+	describe('environment', function() {
+		it('should set environment to testing', function() {
+			expect(process.env.DB_ENV).toBe('testing');
+		});
+	});
 
-  describe('GET /', function() {
-    it('should return a 200 OK', function() {
-      return request(server)
-        .get('/')
-        .then(res => {
-          expect(res.status).toBe(200);
-        })
-    })
+	describe('GET /', function() {
+		it('should return a 200 OK', function() {
+			return request(server)
+				.get('/')
+				.then(res => {
+					expect(res.status).toBe(200);
+				});
+		});
 
-    it('should return a JSON', function() {
-      return request(server)
-        .get('/')
-        .then(res => {
-          expect(res.type).toMatch(/json/i);
-        })
-    });
+		it('should return a JSON', function() {
+			return request(server)
+				.get('/')
+				.then(res => {
+					expect(res.type).toMatch(/json/i);
+				});
+		});
 
-    it('should return a JSON with string "Rolling with the homies..."', function() {
-      return request(server)
-        .get('/')
-        .then(res => {
-          expect(res.body.api).toMatch('Rolling with the homies...');
-        })
-    })
-  })
-})
+		it('should return a JSON with string "Rolling with the homies..."', function() {
+			return request(server)
+				.get('/')
+				.then(res => {
+					expect(res.body.api).toMatch('Rolling with the homies...');
+				});
+		});
+	});
+});
